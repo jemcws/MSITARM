@@ -249,25 +249,39 @@
         "description": "The pull server URI"
       }
     },
-    "vaultname": {
+    "webILBUriKey": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
-        "description": "The vault Name"
+        "description": "URI Key for the webILB script"
       }
     },
-    "vaultkey": {
+    "ILBSubId": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
-        "description": "The Vault key"
+        "description": "Id of sub containing the webILB script"
       }
     },
-    "vaultResourceGroup": {
+    "ILBResourceGroup": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
-        "description": "The Vault resource Group"
+        "description": "Resource Group containing the the webILB script"
+      }
+    },
+    "ILBAccount": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Automation Account used to run the webILB script"
+      }
+    },
+    "DashboardURL": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "URL of dashboard, used internally for debugging."
       }
     }
   },
@@ -293,9 +307,6 @@
     "BuildMachineRoleURL": "[concat(variables('BaseURL'),'nested/template-Build',variables('Role'), '.json')]",
     
     "BuildwebILBCluster": "[concat(variables('BaseURL'),'nested/template-BuildwebILB.json')]",
-
-    "vaultname": "[parameters('vaultname')]",
-    "vaultkey": "[parameters('vaultkey')]",
 
     "AzureAutomation": {
       "Url": "https://github.com/Azure/azure-quickstart-templates/raw/master/dsc-extension-azure-automation-pullserver/UpdateLCMforAAPull.zip",
@@ -511,44 +522,19 @@
             "value": "none"
           },
           "webILBUriKey": {
-            "reference": {
-              "keyVault": {
-                "id": "[concat('/subscriptions/',variables('vaultkey'),'/resourceGroups/',parameters('vaultResourceGroup'),'/providers/Microsoft.KeyVault/vaults/', variables('vaultName'))]"
-              },
-              "secretName": "webILBUriKey"
-            }
+            "value": "[parameters('webILBUriKey')]"
           },
           "ILBSubId": {
-            "reference": {
-              "keyVault": {
-                "id": "[concat('/subscriptions/',variables('vaultkey'),'/resourceGroups/',parameters('vaultResourceGroup'),'/providers/Microsoft.KeyVault/vaults/', variables('vaultName'))]"
-              },
-              "secretName": "ILBSubId"
-            }
+            "value": "[parameters('ILBSubId')]"
           },
           "ILBResourceGroup": {
-            "reference": {
-              "keyVault": {
-                "id": "[concat('/subscriptions/',variables('vaultkey'),'/resourceGroups/',parameters('vaultResourceGroup'),'/providers/Microsoft.KeyVault/vaults/', variables('vaultName'))]"
-              },
-              "secretName": "ILBResourceGroup"
-            }
+            "value": "[parameters('ILBResourceGroup')]"
           },
           "ILBAccount": {
-            "reference": {
-              "keyVault": {
-                "id": "[concat('/subscriptions/',variables('vaultkey'),'/resourceGroups/',parameters('vaultResourceGroup'),'/providers/Microsoft.KeyVault/vaults/', variables('vaultName'))]"
-              },
-              "secretName": "ILBAccount"
-            }
+            "value": "[parameters('ILBAccount')]"
           },
           "DashboardURL": {
-            "reference": {
-              "keyVault": {
-                "id": "[concat('/subscriptions/',variables('vaultkey'),'/resourceGroups/',parameters('vaultResourceGroup'),'/providers/Microsoft.KeyVault/vaults/', variables('vaultName'))]"
-              },
-              "secretName": "DashboardURL"
-            }
+            "value": "[parameters('DashboardURL')]"
           }
         }
       },
