@@ -29,6 +29,12 @@
     "OuPath": {
       "value": ""
     },
+    "CiOwner": {
+      "value": ""
+    },
+    "CiAnalystGroup": {
+      "value": ""
+    },
     "appID": {
       "value": ""
     },
@@ -38,7 +44,7 @@
     "vmStorageAccountName0": {
       "value": ""
     },
-   
+
     "nt0applicationStartPort": {
       "value": 20000
     },
@@ -57,7 +63,7 @@
     "nt0fabricHttpGatewayPort": {
       "value": 19080
     },
-   
+
     "publicIPAddressName": {
       "value": "PublicIP-VM"
     },
@@ -137,7 +143,7 @@
     "vmNodeType0Count": {
       "value": 5
     },
-     "certificateThumbprint": {
+    "certificateThumbprint": {
       "value": ""
     },
     "certificateStoreValue": {

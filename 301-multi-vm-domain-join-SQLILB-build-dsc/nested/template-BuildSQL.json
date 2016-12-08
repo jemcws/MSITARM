@@ -1,6 +1,6 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
   "parameters": {
     "vmName": {
       "type": "string",
@@ -191,39 +191,39 @@
     },
     "DiskSKU": "[variables(concat(parameters('DiskConfig'),'Disk'))]"
   },
-  "resources": [
-    {
-      "type": "Microsoft.Compute/virtualMachines/extensions",
-      "name": "[concat(parameters('vmName'),'/Microsoft.Powershell.DSC')]",
-      "apiVersion": "2015-06-15",
-      "location": "[resourceGroup().location]",
-      "properties": {
-        "publisher": "Microsoft.Powershell",
-        "type": "DSC",
-        "typeHandlerVersion": "2.18",
-        "autoUpgradeMinorVersion": true,
-        "protectedSettings": {},
-        "settings": {
-          "ModulesUrl": "[variables('modulesUrl')]",
-          "SasToken": "",
-          "ConfigurationFunction": "[variables('configurationFunction')]",
-          "Properties": {
-            "DataPath": "[variables('DiskSKU').SQLServer.DataPath]",
-            "LogPath": "[variables('DiskSKU').SQLServer.LogPath]",
-            "BackupPath": "[variables('DiskSKU').SQLServer.BackupPath]",
-            "TempDBPath": "[variables('DiskSKU').SQLServer.TempDBPath]",
-            "SQLServerAccount": "[parameters('SQLServerAccount')]",
-            "SQLServerPassword": "[parameters('SQLServerPassword')]",
-            "SQLAgentAccount": "[parameters('SQLAgentAccount')]",
-            "SQLAgentPassword": "[parameters('SQLAgentPassword')]",
-            "SQLAdmin": "[parameters('SQLAdmin')]",
-            "SQLAdminPwd": "[parameters('SQLAdminPwd')]",
-            "BaseURL": "[variables('BaseURL')]"
+    "resources": [
+      {
+        "type": "Microsoft.Compute/virtualMachines/extensions",
+        "name": "[concat(parameters('vmName'),'/BuildVM')]",
+        "apiVersion": "2015-06-15",
+        "location": "[resourceGroup().location]",
+        "properties": {
+          "publisher": "Microsoft.Powershell",
+          "type": "DSC",
+          "typeHandlerVersion": "2.18",
+          "autoUpgradeMinorVersion": true,
+          "protectedSettings": { },
+          "settings": {
+            "ModulesUrl": "[variables('modulesUrl')]",
+            "SasToken": "",
+            "ConfigurationFunction": "[variables('configurationFunction')]",
+            "Properties": {
+              "DataPath": "[variables('DiskSKU').SQLServer.DataPath]",
+              "LogPath": "[variables('DiskSKU').SQLServer.LogPath]",
+              "BackupPath": "[variables('DiskSKU').SQLServer.BackupPath]",
+              "TempDBPath": "[variables('DiskSKU').SQLServer.TempDBPath]",
+              "SQLServerAccount": "[parameters('SQLServerAccount')]",
+              "SQLServerPassword": "[parameters('SQLServerPassword')]",
+              "SQLAgentAccount": "[parameters('SQLAgentAccount')]",
+              "SQLAgentPassword": "[parameters('SQLAgentPassword')]",
+              "SQLAdmin": "[parameters('SQLAdmin')]",
+              "SQLAdminPwd": "[parameters('SQLAdminPwd')]",
+              "BaseURL": "[variables('BaseURL')]"
+            }
+            
           }
-
         }
       }
-    }
-  ]
+    ]
 }
 

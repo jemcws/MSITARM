@@ -47,9 +47,6 @@
     "sku": {
       "value": ""
     },
-    "snoozeDate": {
-      "value": ""
-    },
     "storageAccountType": {
       "value": "Standard_LRS"
     },

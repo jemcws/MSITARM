@@ -17,10 +17,13 @@
     "domainJoinPassword": {
       "value": ""
     },
-    "numberOfInstances": {
-      "value": "1"
+     "localAdmins": {
+      "value": ""
     },
-    "localAdmins": {
+    "CiOwner": {
+      "value": ""
+    },
+    "CiAnalystGroup": {
       "value": ""
     },
     "appID": {
@@ -42,9 +45,6 @@
       "value": ""
     },
     "sku": {
-      "value": ""
-    },
-    "snoozeDate": {
       "value": ""
     },
     "storageAccountType": {

@@ -146,6 +146,22 @@
         "description": "The FQDN of the AD domain"
       }
     },
+    "CiOwner": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "",
+      "metadata": {
+        "description": "CiOwner tag for the Virtual Machine."
+      }
+    },
+    "CiAnalystGroup": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "",
+      "metadata": {
+        "description": "CiAnalystGroup tag for the Virtual Machine."
+      }
+    },
     "appID": {
       "type": "string",
       "defaultValue": "",
@@ -173,13 +189,6 @@
       ],
       "metadata": {
         "description": "environment tag for the Virtual Machine."
-      }
-    },
-    "snoozeDate": {
-      "type": "string",
-      "defaultValue": "1/1/16",
-      "metadata": {
-        "description": "Snooze date"
       }
     },
     "localAdmins": {
@@ -321,7 +330,7 @@
             "value": "[parameters('domainJoinPassword')]"
           },
           "vmName": {
-            "value": "[concat(parameters('vmName'),variables('IIS').Role,'-')]"
+            "value": "[concat(parameters('vmName'),variables('IIS').Role,'')]"
           },
           "DiskConfig": {
             "value": "[variables('IIS').DiskConfig]"
@@ -365,8 +374,11 @@
           "env": {
             "value": "[parameters('env')]"
           },
-          "snoozeDate": {
-            "value": "[parameters('snoozeDate')]"
+          "CiOwner": {
+            "value": "[parameters('CiOwner')]"
+          },
+          "CiAnalystGroup": {
+            "value": "[parameters('CiAnalystGroup')]"
           },
           "localAdmins": {
             "value": "[parameters('localAdmins')]"
@@ -419,7 +431,7 @@
             "value": "[parameters('domainJoinPassword')]"
           },
           "vmName": {
-            "value": "[concat(parameters('vmName'),variables('SQL').Role,'-')]"
+            "value": "[concat(parameters('vmName'),variables('SQL').Role,'')]"
           },
           "AvailabilitySet": {
             "value": "[concat(parameters('AvailabilitySet'),variables('SQL').Role)]"
@@ -490,8 +502,11 @@
           "env": {
             "value": "[parameters('env')]"
           },
-          "snoozeDate": {
-            "value": "[parameters('snoozeDate')]"
+          "CiOwner": {
+            "value": "[parameters('CiOwner')]"
+          },
+          "CiAnalystGroup": {
+            "value": "[parameters('CiAnalystGroup')]"
           },
           "localAdmins": {
             "value": "[parameters('localAdmins')]"

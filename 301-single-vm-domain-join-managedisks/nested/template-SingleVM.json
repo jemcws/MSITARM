@@ -142,6 +142,22 @@
         "description": "The FQDN of the AD domain"
       }
     },
+    "CiOwner": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "",
+      "metadata": {
+        "description": "CiOwner tag for the Virtual Machine."
+      }
+    },
+    "CiAnalystGroup": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "",
+      "metadata": {
+        "description": "CiAnalystGroup tag for the Virtual Machine."
+      }
+    },
     "appID": {
       "type": "string",
       "minLength": 1,
@@ -166,12 +182,6 @@
       ],
       "metadata": {
         "description": "environment tag for the Virtual Machine."
-      }
-    },
-    "snoozeDate": {
-      "type": "string",
-      "metadata": {
-        "description": "Snooze date"
       }
     },
     "virtualNetwork": {
@@ -232,7 +242,7 @@
     "autologonContent": "[concat('<AutoLogon><Password><Value>',parameters('localAdminPassword'),'</Value></Password><Domain>.</Domain><Enabled>true</Enabled><LogonCount>1</LogonCount><Username>',parameters('localAdminUserName'),'</Username></AutoLogon>')]",
     "firstLogonCommands": "<FirstLogonCommands><SynchronousCommand><CommandLine>netsh advfirewall firewall set rule group=&quot;Windows Management Instrumentation (WMI)&quot; new enable=Yes</CommandLine><Description>Update Firewall Settings</Description><Order>1</Order></SynchronousCommand><SynchronousCommand><CommandLine>logoff.exe</CommandLine><Description>Logoff</Description><Order>2</Order></SynchronousCommand></FirstLogonCommands>",
     "domainJoinOptions": 3,
-    "vmExtensionName": "Microsoft.Powershell.DSC",
+    "vmExtensionName": "BuildVM",
     "diskCaching": "None",
     "SQLStdDisk": {
       "vmSize": "[parameters('vmSize')]",
@@ -345,8 +355,7 @@
         "displayName": "NetworkInterface",
         "appID": "[parameters('appID')]",
         "orgID": "[parameters('orgID')]",
-        "env": "[parameters('env')]",
-        "snoozeDate": "[parameters('snoozeDate')]"
+        "env": "[parameters('env')]"
       },
       "properties": {
         "ipConfigurations": [
@@ -369,10 +378,11 @@
       "location": "[resourceGroup().location]",
       "tags": {
         "displayName": "VirtualMachine",
+        "CiOwner": "[parameters('CiOwner')]",
+        "CiAnalystGroup": "[parameters('CiAnalystGroup')]",
         "appID": "[parameters('appID')]",
         "orgID": "[parameters('orgID')]",
-        "env": "[parameters('env')]",
-        "snoozeDate": "[parameters('snoozeDate')]"
+        "env": "[parameters('env')]"
       },
       "dependsOn": [
         "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'),'','nic1')]"

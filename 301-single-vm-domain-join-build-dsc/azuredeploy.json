@@ -5,11 +5,11 @@
     "vmName": {
       "type": "string",
       "defaultValue": "",
-            "minLength": 3,
-            "metadata": {
-                "description": "Name for the Virtual Machine."
-            }
-        },
+      "minLength": 3,
+      "metadata": {
+        "description": "Name for the Virtual Machine."
+      }
+    },
     "localAdminUserName": {
       "type": "string",
       "defaultValue": "",
@@ -135,6 +135,22 @@
         "description": "The FQDN of the AD domain, currently only Redmond domain is supported. "
       }
     },
+    "CiOwner": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "",
+      "metadata": {
+        "description": "CiOwner tag for the Virtual Machine."
+      }
+    },
+    "CiAnalystGroup": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "",
+      "metadata": {
+        "description": "CiAnalystGroup tag for the Virtual Machine."
+      }
+    },
     "appID": {
       "type": "string",
       "minLength": 1,
@@ -162,13 +178,6 @@
       ],
       "metadata": {
         "description": "environment tag for the Virtual Machine."
-      }
-    },
-    "snoozeDate": {
-      "type": "string",
-      "defaultValue": "1/1/15",
-      "metadata": {
-        "description": "Snooze date"
       }
     },
     "localAdmins": {
@@ -207,19 +216,19 @@
       }
     },
     "PullServerRegistrationKey": {
-         "type": "string",
-        "defaultValue": "",
-        "metadata": {
-          "description": "The Organizational Unit the VM will join"
-        }
-      },
-    "PullServerRegistrationURI": {
-         "type": "string",
-        "defaultValue": "",
-        "metadata": {
-          "description": "The pull server URI"
-        }
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "The Organizational Unit the VM will join"
       }
+    },
+    "PullServerRegistrationURI": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "The pull server URI"
+      }
+    }
   },
    "variables": {
       "apiVersion": "2015-01-01",
@@ -264,86 +273,89 @@
                   "uri": "[variables('CreateVMUrl')]",
                   "contentVersion": "1.0.0.0"
               },
-              "parameters": {
-                  "localAdminUserName": {
-                      "value": "[parameters('localAdminUserName')]"
-                  },
-                  "localAdminPassword": {
-                      "value": "[parameters('localAdminPassword')]"
-                  },
-                  "domainJoinUserName": {
-                      "value": "[parameters('domainJoinUserName')]"
-                  },
-                  "domainJoinPassword": {
-                      "value": "[parameters('domainJoinPassword')]"
-                  },
-                  "vmName": {
-                      "value": "[parameters('vmName')]"
-                  },
-                  "DiskConfig": {
-                      "value": "[parameters('DiskConfig')]"
-                  },
-                  "vmSize": {
-                      "value": "[parameters('vmSize')]"
-                  },
-                  "DiskCount": {
-                      "value": "[parameters('DiskCount')]"
-                  },
-                  "DiskSize": {
-                      "value": "[parameters('DiskSize')]"
-                  },
-                  "numberOfInstances": {
-                      "value": 1
-                  },
-                  "imagePublisher": {
-                      "value": "[parameters('imagePublisher')]"
-                  },
-                  "imageOffer": {
-                      "value": "[parameters('imageOffer')]"
-                  },
-                  "sku": {
-                      "value": "[parameters('sku')]"
-                  },
-                  "userImageStorageAccountName": {
-                      "value": "[parameters('userImageStorageAccountName')]"
-                  },
-                "StorageAccountType": {
-                  "value": "[parameters('StorageAccountType')]"
-                },
-                  "domainName": {
-                      "value": "[parameters('domainName')]"
-                  },
-                  "appID": {
-                      "value": "[parameters('appID')]"
-                  },
-                  "orgID": {
-                      "value": "[parameters('orgID')]"
-                  },
-                  "env": {
-                      "value": "[parameters('env')]"
-                  },
-                  "snoozeDate": {
-                      "value": "[parameters('snoozeDate')]"
-                  },
-                "localAdmins": {
-                  "value": "[parameters('localAdmins')]"
-                },
-                "SQLAdmins": {
-                  "value": ""
-                },
-                "virtualNetwork": {
-                  "value": "[parameters('virtualNetwork')]"
-                  },
-                "vnetResourceGroup": {
-                      "value": "[parameters('vnetResourceGroup')]"
-                  },
-                "subnetName": {
-                      "value": "[parameters('subnetName')]"
-                  },
-                "ouPath": {
-                      "value": "[parameters('ouPath')]"
-                  }
+            "parameters": {
+              "localAdminUserName": {
+                "value": "[parameters('localAdminUserName')]"
+              },
+              "localAdminPassword": {
+                "value": "[parameters('localAdminPassword')]"
+              },
+              "domainJoinUserName": {
+                "value": "[parameters('domainJoinUserName')]"
+              },
+              "domainJoinPassword": {
+                "value": "[parameters('domainJoinPassword')]"
+              },
+              "vmName": {
+                "value": "[parameters('vmName')]"
+              },
+              "DiskConfig": {
+                "value": "[parameters('DiskConfig')]"
+              },
+              "vmSize": {
+                "value": "[parameters('vmSize')]"
+              },
+              "DiskCount": {
+                "value": "[parameters('DiskCount')]"
+              },
+              "DiskSize": {
+                "value": "[parameters('DiskSize')]"
+              },
+              "numberOfInstances": {
+                "value": 1
+              },
+              "imagePublisher": {
+                "value": "[parameters('imagePublisher')]"
+              },
+              "imageOffer": {
+                "value": "[parameters('imageOffer')]"
+              },
+              "sku": {
+                "value": "[parameters('sku')]"
+              },
+              "userImageStorageAccountName": {
+                "value": "[parameters('userImageStorageAccountName')]"
+              },
+              "StorageAccountType": {
+                "value": "[parameters('StorageAccountType')]"
+              },
+              "domainName": {
+                "value": "[parameters('domainName')]"
+              },
+              "CiOwner": {
+                "value": "[parameters('CiOwner')]"
+              },
+              "CiAnalystGroup": {
+                "value": "[parameters('CiAnalystGroup')]"
+              },
+              "appID": {
+                "value": "[parameters('appID')]"
+              },
+              "orgID": {
+                "value": "[parameters('orgID')]"
+              },
+              "env": {
+                "value": "[parameters('env')]"
+              },
+              "localAdmins": {
+                "value": "[parameters('localAdmins')]"
+              },
+              "SQLAdmins": {
+                "value": ""
+              },
+              "virtualNetwork": {
+                "value": "[parameters('virtualNetwork')]"
+              },
+              "vnetResourceGroup": {
+                "value": "[parameters('vnetResourceGroup')]"
+              },
+              "subnetName": {
+                "value": "[parameters('subnetName')]"
+              },
+              "ouPath": {
+                "value": "[parameters('ouPath')]"
               }
+            }
           }
       },
       {

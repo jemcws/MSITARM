@@ -50,6 +50,12 @@
     "SQLAdmins": {
       "value": ""
     },
+    "CiOwner": {
+      "value": ""
+    },
+    "CiAnalystGroup": {
+      "value": ""
+    },
     "appID": {
       "value": "dev"
     },
@@ -69,9 +75,6 @@
       "value": "SQL2014SP1-WS2012R2"
     },
     "sku": {
-      "value": ""
-    },
-    "snoozeDate": {
       "value": ""
     },
     "userImageStorageAccountName": {

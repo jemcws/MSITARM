@@ -35,16 +35,22 @@
     "SQLAgentPassword": {
       "value": ""
     },
+    "CiOwner": {
+      "value": ""
+    },
+    "CiAnalystGroup": {
+      "value": ""
+    },
     "appID": {
+      "value": ""
+    },
+    "orgID": {
       "value": ""
     },
     "domainName": {
       "value": ""
     },
     "env": {
-      "value": ""
-    },
-    "orgID": {
       "value": ""
     },
     "imagePublisher": {
@@ -54,9 +60,6 @@
       "value": ""
     },
     "sku": {
-      "value": ""
-    },
-    "snoozeDate": {
       "value": ""
     },
     "storageAccountType": {

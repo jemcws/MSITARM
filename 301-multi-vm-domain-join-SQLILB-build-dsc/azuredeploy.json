@@ -219,6 +219,22 @@
         "description": "The FQDN of the AD domain, currently only Redmond domain is supported. "
       }
     },
+    "CiOwner": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "",
+      "metadata": {
+        "description": "CiOwner tag for the Virtual Machine."
+      }
+    },
+    "CiAnalystGroup": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "",
+      "metadata": {
+        "description": "CiAnalystGroup tag for the Virtual Machine."
+      }
+    },
     "appID": {
       "type": "string",
       "minLength": 1,
@@ -246,13 +262,6 @@
       ],
       "metadata": {
         "description": "environment tag for the Virtual Machine."
-      }
-    },
-    "snoozeDate": {
-      "type": "string",
-      "defaultValue": "1/1/15",
-      "metadata": {
-        "description": "Snooze date"
       }
     },
     "virtualNetwork": {
@@ -433,11 +442,14 @@
           "orgID": {
             "value": "[parameters('orgID')]"
           },
+          "CiOwner": {
+            "value": "[parameters('CiOwner')]"
+          },
+          "CiAnalystGroup": {
+            "value": "[parameters('CiAnalystGroup')]"
+          },
           "env": {
             "value": "[parameters('env')]"
-          },
-          "snoozeDate": {
-            "value": "[parameters('snoozeDate')]"
           },
           "virtualNetwork": {
             "value": "[parameters('virtualNetwork')]"

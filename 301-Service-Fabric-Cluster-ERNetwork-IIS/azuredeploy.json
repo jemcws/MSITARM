@@ -58,6 +58,22 @@
         "description": "The FQDN of the AD domain"
       }
     },
+    "CiOwner": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "",
+      "metadata": {
+        "description": "CiOwner tag for the Virtual Machine."
+      }
+    },
+    "CiAnalystGroup": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "",
+      "metadata": {
+        "description": "CiAnalystGroup tag for the Virtual Machine."
+      }
+    },
     "appID": {
       "type": "string",
       "minLength": 1,
@@ -270,7 +286,7 @@
       "[concat('3', parameters('vmStorageAccountName0'))]",
       "[concat('4', parameters('vmStorageAccountName0'))]"
     ],
-    "vmExtensionName": "Microsoft.Powershell.DSC",
+    "vmExtensionName": "BuildVM",
     "DomainJoinzip": "scripts/DomainJoinSFC.ps1.zip",
     "DomainJoinModule": "[concat(variables('BaseURL'),variables('DomainJoinzip'))]"
 
@@ -663,14 +679,22 @@
       "type": "Microsoft.ServiceFabric/clusters",
       "name": "[parameters('clusterName')]",
       "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "Service Fabric Cluster",
+        "CiOwner": "[parameters('CiOwner')]",
+        "CiAnalystGroup": "[parameters('CiAnalystGroup')]",
+        "appID": "[parameters('appID')]",
+        "orgID": "[parameters('orgID')]",
+        "env": "[parameters('env')]"
+      },
       "dependsOn": [ "[concat('Microsoft.Storage/storageAccounts/', variables('supportLogStorageAccountName'))]" ],
       "properties": {
         "certificate": {
           "thumbprint": "[parameters('certificateThumbprint')]",
           "x509StoreName": "[parameters('certificateStoreValue')]"
         },
-        "clientCertificateCommonNames": [ ],
-        "clientCertificateThumbprints": [ ],
+        "clientCertificateCommonNames": [],
+        "clientCertificateThumbprints": [],
         "clusterState": "Default",
         "diagnosticsStorageAccountConfig": {
           "blobEndpoint": "[concat('https://',variables('supportLogStorageAccountName'),'.blob.core.windows.net/')]",
@@ -679,7 +703,7 @@
           "storageAccountName": "[variables('supportLogStorageAccountName')]",
           "tableEndpoint": "[concat('https://',variables('supportLogStorageAccountName'),'.table.core.windows.net/')]"
         },
-        "fabricSettings": [ ],
+        "fabricSettings": [],
         "managementEndpoint": "[concat('https://',parameters('dnsName'),':',parameters('nt0fabricHttpGatewayPort'))]",
         "nodeTypes": [
           {
