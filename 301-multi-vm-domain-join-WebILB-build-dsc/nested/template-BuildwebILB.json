@@ -44,34 +44,16 @@
         "description": "Optional Name for the LoadBalancer."
       }
     },
-    "WebILBUriKey": {
-      "type": "securestring",
-      "metadata": {
-        "description": "The ILB Runbook key"
-      }
-    },
-    "ILBSubId": {
-      "type": "securestring",
-      "metadata": {
-        "description": "The ILB Subscription"
-      }
-    },
-    "ILBResourceGroup": {
+    "WebHookKey": {
       "type": "securestring",
       "metadata": {
         "description": "The ILB Runbook ResourceGroup"
       }
     },
-    "ILBAccount": {
+    "Dashboardsvr": {
       "type": "securestring",
       "metadata": {
-        "description": "The ILB Runbook ResourceGroup"
-      }
-    },
-    "DashboardURL": {
-      "type": "securestring",
-      "metadata": {
-        "description": "The Dashboard URL"
+        "description": "The Dashboard svr"
       }
     }
   },
@@ -84,7 +66,7 @@
     "vmILBExtensionName": "ConfigureWebILB",
     "customILBScriptFileToRun": "Configure-WebILB.ps1",
     "customILBScriptFileUri": "[concat(variables('baseURL'),'scripts/',variables('customILBScriptFileToRun'))]",
-    "ILBarguments": "[concat(' -DeploymentName ', parameters('DeploymentName'), ' -SubscriptionId ',subscription().subscriptionId, ' -servernamepart ', parameters('vmName'), ' -domain ', parameters('DomainName'), ' -InstanceCount ', parameters('numberOfInstances'),' -SQLILBName ', parameters('SQLILBName'), ' -WebILBName ', parameters('WebILBName'), ' -WebILBSubId ',parameters('ILBSubId'), ' -WebILBUriKey ', parameters('WebILBUriKey'))]",
+    "ILBarguments": "[concat(' -DeploymentName ', parameters('DeploymentName'), ' -SubscriptionId ',subscription().subscriptionId, ' -servernamepart ', parameters('vmName'), ' -domain ', parameters('DomainName'), ' -InstanceCount ', parameters('numberOfInstances'),' -SQLILBName ', parameters('SQLILBName'), ' -WebILBName ', parameters('WebILBName'), ' -WebHookKey ', parameters('WebHookKey'), ' -Dashboardsvr ', parameters('Dashboardsvr'))]",
     "ILBcommandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File', ' ', variables('customILBScriptFileToRun'), ' ', variables('ILBarguments'))]"
 
   },

@@ -306,25 +306,18 @@
         "description": "The pull server URI"
       }
     },
-    "vaultname": {
+    "WebHookKey": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
-        "description": "The vault Name"
+        "description": "Key of webhook, used to launch Runbook."
       }
     },
-    "vaultkey": {
+    "DashboardSvr": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
-        "description": "The Vault key"
-      }
-    },
-    "vaultResourceGroup": {
-      "type": "string",
-      "defaultValue": "",
-      "metadata": {
-        "description": "The Vault resource Group"
+        "description": "Server of dashboard, used internally for debugging."
       }
     }
   },
@@ -334,7 +327,7 @@
     "branch": "develop",
     "folder": "/301-multi-vm-domain-join-SQLILB-build-dsc/",
     "baseURL": "[concat('https://raw.githubusercontent.com/Microsoft/MSITARM/',variables('branch'),variables('folder'))]",
-  
+
     "domainJoinzip": "scripts/DomainJoin.ps1.zip",
     "formatDiskszip": "scripts/FormatDataDisk.ps1.zip",
     "formatDiskstemplate": "nested/template-DataDisks.json",
@@ -350,9 +343,6 @@
 
     "BuildMachineRoleURL": "[concat(variables('BaseURL'),'nested/template-Build',variables('Role'), '.json')]",
     "BuildILBCluster": "[concat(variables('BaseURL'),'nested/template-BuildILB.json')]",
-
-    "vaultname": "[parameters('vaultname')]",
-    "vaultkey": "[parameters('vaultkey')]",
 
     "AzureAutomation": {
       "Url": "https://github.com/Azure/azure-quickstart-templates/raw/master/dsc-extension-azure-automation-pullserver/UpdateLCMforAAPull.zip",
@@ -588,45 +578,11 @@
           "loadBalancerName": {
             "value": "[parameters('loadBalancerName')]"
           },
-          "ILBURIkey": {
-            "reference": {
-              "keyVault": {
-                "id": "[concat('/subscriptions/',variables('vaultkey'),'/resourceGroups/',parameters('vaultResourceGroup'),'/providers/Microsoft.KeyVault/vaults/', variables('vaultName'))]"
-              },
-              "secretName": "ILBURIkey"
-            }
+          "WebHookKey": {
+            "value": "[parameters('WebHookKey')]"
           },
-          "ILBSubId": {
-            "reference": {
-              "keyVault": {
-                "id": "[concat('/subscriptions/',variables('vaultkey'),'/resourceGroups/',parameters('vaultResourceGroup'),'/providers/Microsoft.KeyVault/vaults/', variables('vaultName'))]"
-              },
-              "secretName": "ILBSubId"
-            }
-          },
-          "ILBResourceGroup": {
-            "reference": {
-              "keyVault": {
-                "id": "[concat('/subscriptions/',variables('vaultkey'),'/resourceGroups/',parameters('vaultResourceGroup'),'/providers/Microsoft.KeyVault/vaults/', variables('vaultName'))]"
-              },
-              "secretName": "ILBResourceGroup"
-            }
-          },
-          "ILBAccount": {
-            "reference": {
-              "keyVault": {
-                "id": "[concat('/subscriptions/',variables('vaultkey'),'/resourceGroups/',parameters('vaultResourceGroup'),'/providers/Microsoft.KeyVault/vaults/', variables('vaultName'))]"
-              },
-              "secretName": "ILBAccount"
-            }
-          },
-          "DashboardURL": {
-            "reference": {
-              "keyVault": {
-                "id": "[concat('/subscriptions/',variables('vaultkey'),'/resourceGroups/',parameters('vaultResourceGroup'),'/providers/Microsoft.KeyVault/vaults/', variables('vaultName'))]"
-              },
-              "secretName": "DashboardURL"
-            }
+          "Dashboardsvr": {
+            "value": "[parameters('Dashboardsvr')]"
           }
         }
       },

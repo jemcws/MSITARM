@@ -10,11 +10,7 @@ param
 [string] $Domain,
 [string] $FailoverClusterName,
 [string] $SubscriptionId,
-[string] $Secreturikey,
-[string] $SecretKey,
-[string] $SecretSubId,
-[string] $SecretRg,
-[string] $SecretAcct,
+[string] $webhook,
 [string] $dashboardURL
 
 )
@@ -28,9 +24,9 @@ try {
         Import-Module cloudmsaad
 
         $response = $null
-        $uri = "https://s1events.azure-automation.net/webhooks?token={0}" -f $Secreturikey
+        
         $headers = @{"From"="user@contoso.com";"Date"="$($(get-date).ToShortDateString())"}
-               
+              
 
         $Params  = @(
                     @{ AOAGListenerName=$AOAGListenerName;ILBName=$LoadBalancerName;AOAGName=$AOAGName;Nodes=$Nodes;FailoverClusterName=$FailoverClusterName;SubscriptionId=$SubscriptionId }
@@ -38,7 +34,7 @@ try {
 
         $body = ConvertTo-Json -InputObject $params
     
-        $startRunbook = Invoke-RestMethod -Method Post -Uri $uri -Headers $headers -Body $body
+        $startRunbook = Invoke-RestMethod -Method Post -Uri $webhook -Headers $headers -Body $body
         $jobID = $startRunbook.JobIds[0]
 
             if($jobID) {
