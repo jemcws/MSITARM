@@ -9,8 +9,8 @@ param
 [string] $SubscriptionId,
 [string] $WebILBName,
 [string] $SQLILBName,
-[string] $WebILBSubId,
-[string] $WebILBUriKey
+[string] $WebHookKey,
+[string] $Dashboardsvr
 )
 try {
 
@@ -20,10 +20,8 @@ try {
  write-host "domain=$domain"
  write-host "InstanceCount=$InstanceCount"
  write-host "SubscriptionId=$SubscriptionId"
- write-host "WebILBName=$WebILBName"
- write-host "SQLILBName=$SQLILBName"
- write-host "WebILBSubId=$WebILBSubId"
- write-host "WebILBUriKey=$WebILBUriKey"
+ write-host "webhook=$webhook"
+ write-host "Dashboardsvr=$Dashboardsvr"
 
  (1..$InstanceCount) | %{ if($_ -ne $instanceCount) { $nodes += "$servernamepart$_,"} else {$nodes += "$servernamepart$_"} }
    
@@ -31,7 +29,7 @@ try {
         Import-Module cloudmsaad
          
         $response = $null
-        $uri = "https://s1events.azure-automation.net/webhooks?token={0}" -f $WebILBUriKey
+        $uri = "https://s1events.azure-automation.net/webhooks?token={0}" -f $WebHookKey
         
         $headers = @{"From"="user@contoso.com";"Date"="$($(get-date).ToShortDateString())"}
                
@@ -47,7 +45,7 @@ try {
 
             if($jobID) {
                             
-               $jobstatusURL = "see Dashboard. 'http://co1cptdevweb01:4433/?searchText={0}&f_mtype=WebILB-Configuration&f_dateType=all'  " -f $webilbname
+               $jobstatusURL = "see Dashboard. 'http://{0}:4433/?searchText={0}&f_mtype=WebILB-Configuration&f_dateType=all'  " -f $Dashboardsvr,$webilbname
                 
                write-host $jobstatusURL
 

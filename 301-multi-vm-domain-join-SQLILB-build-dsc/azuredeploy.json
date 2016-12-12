@@ -306,39 +306,18 @@
         "description": "The pull server URI"
       }
     },
-    "ILBUriKey": {
+    "WebHookKey": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
-        "description": "URI Key for the webILB script"
+        "description": "Key of webhook, used to launch Runbook."
       }
     },
-    "ILBSubId": {
+    "DashboardSvr": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
-        "description": "Id of sub containing the webILB script"
-      }
-    },
-    "ILBResourceGroup": {
-      "type": "string",
-      "defaultValue": "",
-      "metadata": {
-        "description": "Resource Group containing the the webILB script"
-      }
-    },
-    "ILBAccount": {
-      "type": "string",
-      "defaultValue": "",
-      "metadata": {
-        "description": "Automation Account used to run the webILB script"
-      }
-    },
-    "DashboardURL": {
-      "type": "string",
-      "defaultValue": "",
-      "metadata": {
-        "description": "URL of dashboard, used internally for debugging."
+        "description": "Server of dashboard, used internally for debugging."
       }
     }
   },
@@ -593,20 +572,11 @@
           "loadBalancerName": {
             "value": "[parameters('loadBalancerName')]"
           },
-          "ILBUriKey": {
-            "value": "[parameters('ILBUriKey')]"
+          "WebHookKey": {
+            "value": "[parameters('WebHookKey')]"
           },
-          "ILBSubId": {
-            "value": "[parameters('ILBSubId')]"
-          },
-          "ILBResourceGroup": {
-            "value": "[parameters('ILBResourceGroup')]"
-          },
-          "ILBAccount": {
-            "value": "[parameters('ILBAccount')]"
-          },
-          "DashboardURL": {
-            "value": "[parameters('DashboardURL')]"
+          "Dashboardsvr": {
+            "value": "[parameters('Dashboardsvr')]"
           }
         }
       },

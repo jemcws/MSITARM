@@ -10,12 +10,8 @@ param
 [string] $Domain,
 [string] $FailoverClusterName,
 [string] $SubscriptionId,
-[string] $Secreturikey,
-[string] $SecretKey,
-[string] $SecretSubId,
-[string] $SecretRg,
-[string] $SecretAcct,
-[string] $dashboardURL
+[string] $webhookkey,
+[string] $dashboardsvr
 
 )
 try {
@@ -28,7 +24,7 @@ try {
         Import-Module cloudmsaad
 
         $response = $null
-        $uri = "https://s1events.azure-automation.net/webhooks?token={0}" -f $Secreturikey
+        $uri = "https://s1events.azure-automation.net/webhooks?token={0}" -f $webhookkey
         $headers = @{"From"="user@contoso.com";"Date"="$($(get-date).ToShortDateString())"}
                
 
@@ -43,7 +39,7 @@ try {
 
             if($jobID) {
                             
-               $jobstatusURL = "see Dashboard. Copy/paste this link-> 'http://{0}/?searchText={1}&f_mtype=SQLAO-Configuration&f_dateType=all'  " -f $dashboardURL,$AOAGListenerName
+               $jobstatusURL = "see Dashboard. Copy/paste this link-> 'http://{0}/?searchText={1}&f_mtype=SQLAO-Configuration&f_dateType=all'  " -f $dashboardsvr,$AOAGListenerName
                 
                write-host $jobstatusURL
 

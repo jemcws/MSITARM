@@ -53,34 +53,18 @@
         "description": "Name for the LoadBalancer."
       }
     },
-     "ILBUriKey": {
-      "type": "securestring",
+    "WebHookKey": {
+      "type": "string",
+      "defaultValue": "",
       "metadata": {
-        "description": "The ILB RunBook server URI key"
+        "description": "URL of webhook, used to launch Runbook."
       }
     },
-    "ILBSubId": {
-      "type": "securestring",
+    "DashboardSvr": {
+      "type": "string",
+      "defaultValue": "",
       "metadata": {
-        "description": "The ILB Subscription"
-      }
-    },
-    "ILBResourceGroup": {
-      "type": "securestring",
-      "metadata": {
-        "description": "The ILB Runbook ResourceGroup"
-      }
-    },
-    "ILBAccount": {
-      "type": "securestring",
-      "metadata": {
-        "description": "The ILB Runbook ResourceGroup"
-      }
-    },
-    "DashboardURL": {
-      "type": "securestring",
-      "metadata": {
-        "description": "The Dashboard URL"
+        "description": "URL of dashboard, used internally for debugging."
       }
     }
   },
@@ -93,7 +77,7 @@
     "vmILBExtensionName": "ConfigureILB",
     "customILBScriptFileToRun": "Configure-ILB.ps1",
     "customILBScriptFileUri": "[concat(variables('baseURL'),'scripts/',variables('customILBScriptFileToRun'))]",
-    "ILBarguments": "[concat(' -AOAGListenerName ', parameters('AOAGListenerName'),' -LoadBalancerName ',parameters('LoadBalancerName'), ' -AOAGName ', parameters('AOAGName'), ' -ServernamePart ', parameters('vmname'), ' -InstanceCount ', parameters('numberOfInstances'),' -Domain ', parameters('DomainName'), ' -FailoverClusterName ', parameters('FailoverClusterName'), ' -SubscriptionId ',subscription().subscriptionId,' -SecretUrikey ', parameters('ILBUriKey'), ' -SecretSubid ',parameters('ILBSubID'),' -SecretRG ',parameters('ILBResourceGroup'),' -SecretAcct ',parameters('ILBAccount'),' -dashboardurl ', parameters('dashboardurl'))]",
+    "ILBarguments": "[concat(' -AOAGListenerName ', parameters('AOAGListenerName'),' -LoadBalancerName ',parameters('LoadBalancerName'), ' -AOAGName ', parameters('AOAGName'), ' -ServernamePart ', parameters('vmname'), ' -InstanceCount ', parameters('numberOfInstances'),' -Domain ', parameters('DomainName'), ' -FailoverClusterName ', parameters('FailoverClusterName'), ' -SubscriptionId ',subscription().subscriptionId,' -WebHookKey ', parameters('WebHookKey'), ' -DashboardSvr ',parameters('DashboardSvr'))]",
     "ILBcommandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File', ' ', variables('customILBScriptFileToRun'), ' ', variables('ILBarguments'))]"
 
   },
