@@ -45,7 +45,7 @@ try {
 
             if($jobID) {
                             
-               $jobstatusURL = "see Dashboard. 'http://{0}:4433/?searchText={0}&f_mtype=WebILB-Configuration&f_dateType=all'  " -f $Dashboardsvr,$webilbname
+               $jobstatusURL = "see Dashboard. 'http://{0}/?searchText={0}&f_mtype=WebILB-Configuration&f_dateType=all'  " -f $Dashboardsvr,$webilbname
                 
                write-host $jobstatusURL
 
