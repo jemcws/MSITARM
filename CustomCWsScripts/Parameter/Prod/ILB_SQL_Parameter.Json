@@ -1,0 +1,129 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmName": {
+      "value":"azuswcwsql1"
+    },
+    "AvailabilitySet": {
+      "value":"AvSetSQL"
+    },
+    "loadBalancerName": {
+      "value": "SQLAOILB"
+    },
+    "AOAGListenerName": {
+      "value": "azuswcwsqlls"
+    },
+    "AOAGName": {
+      "value": "azuswcwsqlag"
+    },
+    "FailoverClusterName": {
+      "value": "azuswcwsfc"
+    },
+    "numberOfInstances": {
+      "value": 2
+    },
+    "localAdminUserName": {
+     "value": "itsvc0"
+    },
+    "localAdminPassword": {
+      "value": "SupCed64"
+    },
+    "domainJoinUserName": {
+      "value": "Redmond\\jem-dev"
+    },
+    "domainJoinPassword": {
+     "value": "Nov@2016"
+    },
+    "localAdmins": {
+      "value": "Redmond\\SQLSvcAccounts,Redmond\\jem-dev"
+    },
+    "SQLAdmins": {
+      "value": "Redmond\\jem-dev"
+    },
+    "SQLServerAccount": {
+       "value": "Redmond\\jem-dev"
+    },
+    "SQLServerPassword": {
+      "value": "Nov@2016"
+    },
+    "SQLAgentAccount": {
+      "value": "Redmond\\jem-dev"
+    },
+    "SQLAgentPassword": {
+     "value": "Nov@2016"
+    },
+    "vmSize": {
+     "value": "Standard_D4_v2"
+    },
+    "imagePublisher": {
+       "value": "MicrosoftSQLServer"
+    },
+    "imageOffer": {
+       "value": "SQL2016-WS2012R2"
+    },
+    "sku": {
+     "value": "Enterprise"
+    },
+    "DiskConfig": { 
+      "value": "SQLStd"
+    },
+    "DiskCount": {
+      "value": "4"
+    },
+    "DiskSize": {
+      "value": 400
+    },
+    "userImageStorageAccountName": {
+      "value": "cwsdmolrssa"
+    },
+    "StorageAccountType": {
+      "value": "Standard_LRS"
+    },
+    "domainName": {
+      "value": "redmond.corp.microsoft.com"
+    },
+    "CiOwner": {
+      "value": "v-sutat"
+    },
+    "CiAnalystGroup": {
+      "value": "Org1"
+    },
+    "appID": {
+     "value": "500368"
+    },
+    "orgID": {
+      "value": "ICTO-CWS"
+    },
+    "env": {
+      "value": "dev"
+    },
+    "virtualNetwork": {
+      "value": "JEMandAssureNet-CORP-WUS2-VNET-1"
+    },
+    "vnetResourceGroup": {
+     "value": "ERNetwork"
+    },
+    "subnetName": {
+      "value": "Subnet-1"
+    },
+    "ouPath": {
+       "value": "OU=CloudMSVMs,OU=ITManaged,OU=ITServices,DC=redmond,DC=corp,DC=microsoft,DC=com"
+    },
+    "PullServerRegistrationKey": {
+      "value": "DtOvyfhxbRkS+kXw9PerJP4RQx48HxCcvKruEyd/vfz2gKplxr+UtJDpsdBjltyDhhMa5As4OGKFb3M+p5vlbQ=="
+    },
+    "PullServerRegistrationURI": {
+     "value": "https://eus2-agentservice-prod-1.azure-automation.net/accounts/d9886cc8-9990-4461-972b-155d710f1ace"
+    },
+    "vaultname": {
+     "value": "CloudMSArmProdVault"
+    },
+    "vaultkey": {
+     "value": "0d9e5aff-35e3-4160-acb1-16e909dab832"
+    },
+    "vaultResourceGroup": {
+      "value": "OaaSCSWTOKHSWZPRQP7YEJ3J67FR3Q6VMUSQ6OB7KU5FNQXXMV2EC2SBQQ-East-US"
+    }
+  }
+}
