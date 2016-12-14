@@ -5,7 +5,7 @@ param(
  [string] $subscriptionId="472e0eab-03f7-40c9-a6c3-d1d493b9ee5d",
  [string] $deploymentName="CwsDev",
  [String] $SPName="557f002d-2ed0-4a87-a1fe-d9778e651149",
- [String] $SPPwd="2016^Oct"
+ [String] $SPPwd=""
 )
 try{
     <#
@@ -29,15 +29,15 @@ try{
     #Check if the user is already logged in for this session
     $AzureRmContext = Get-AzureRmContext | out-null
     Write-verbose "Connected to Azure"
-    } catch {
-    
-    $user= $SPName
-    $pass = ConvertTo-SecureString $SPPwd -AsPlainText –Force
-    $cred = New-Object -TypeName pscredential –ArgumentList $user, $pass
-    Login-AzureRmAccount -Credential $cred -ServicePrincipal –TenantId 72f988bf-86f1-41af-91ab-2d7cd011db47
-    
-    Write-verbose "logged into Azure."
-    $error.Clear()
+    } 
+    catch 
+    {    
+	    $user= $SPName
+	    $pass = ConvertTo-SecureString $SPPwd -AsPlainText –Force
+	    $cred = New-Object -TypeName pscredential –ArgumentList $user, $pass
+	    Login-AzureRmAccount -Credential $cred -ServicePrincipal –TenantId 72f988bf-86f1-41af-91ab-2d7cd011db47
+	     Write-verbose "logged into Azure."
+	    $error.Clear()
     }
     
     # select subscription
@@ -79,13 +79,13 @@ try{
      }
      else
      {
-     Write-Host "Taking already existing Storage Account: '$StorageAccountName' from  Resource Group: '$resourceGroupName' "
+      Write-Host "Taking already existing Storage Account: '$StorageAccountName' from  Resource Group: '$resourceGroupName' "
      }
 }
 catch [System.Exception]
 {
 	$tryError = $_.Exception
 	$message = $tryError.Message
-	Write-Host "Unable to configure it on server-$RemoteComputers. Error: $message."
+	Write-Host "Unable to configure it on server-$RemoteComputers. Error: $message. "
     break
 }
