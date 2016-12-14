@@ -11,33 +11,24 @@ $user= $SPName
 $pass = ConvertTo-SecureString $SPPwd -AsPlainText –Force
 $cred = New-Object -TypeName pscredential –ArgumentList $user, $pass
 Login-AzureRmAccount -Credential $cred -ServicePrincipal –TenantId 72f988bf-86f1-41af-91ab-2d7cd011db47
-Write-verbose "logged into Azure."
     
 # select subscription
-Write-Host "Selecting subscription '$subscriptionId'";
 Select-AzureRmSubscription -SubscriptionID $subscriptionId;
 
 #Create or check for existing resource group
 $resourceGroup = Get-AzureRmResourceGroup -Name "$resourceGroupName" -ErrorAction SilentlyContinue
 if(!$resourceGroup)
 {
-Write-Host "Resource group '$resourceGroupName' does not exist. To create a new resource group, please enter a location.";
-if(!$resourceGroupLocation) {
-    $resourceGroupLocation = Read-Host "resourceGroupLocation";
-}
-Write-Host "Creating resource group '$resourceGroupName' in location '$resourceGroupLocation'";
-New-AzureRmResourceGroup -Name "$resourceGroupName" -Location $resourceGroupLocation
-}
-else{
-Write-Host "Using existing resource group '$resourceGroupName'";
-}
 
-# Start the deployment -Procuring Storage Account.
-Write-Host "Starting deployment For Storage Account Creation For '$StorageAccountName'";
+    if(!$resourceGroupLocation) 
+    {
+        $resourceGroupLocation = Read-Host "resourceGroupLocation";
+    }
+    New-AzureRmResourceGroup -Name "$resourceGroupName" -Location $resourceGroupLocation
+}
         
 $storageAcc=Get-AzureRmStorageAccount -ResourceGroupName $resourceGroupName -Name $StorageAccountName -ErrorAction SilentlyContinue
 if (!$storageAcc.StorageAccountName)
 {  
-Write-Host "Creating Storage Account... $StorageAccountName"
 New-AzureRmStorageAccount -ResourceGroupName $resourceGroupName -AccountName $StorageAccountName -Location $resourceGroupLocation -Type 'Standard_LRS'
 }
