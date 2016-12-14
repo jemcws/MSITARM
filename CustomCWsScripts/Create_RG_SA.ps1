@@ -16,15 +16,15 @@ Login-AzureRmAccount -Credential $cred -ServicePrincipal –TenantId 72f988bf-86
 Select-AzureRmSubscription -SubscriptionID $subscriptionId;
 
 #Create or check for existing resource group
-$resourceGroup = Get-AzureRmResourceGroup -Name "$resourceGroupName" -ErrorAction SilentlyContinue
+$resourceGroup = Get-AzureRmResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue
 if(!$resourceGroup)
 {
 
     if(!$resourceGroupLocation) 
     {
-        $resourceGroupLocation = Read-Host "resourceGroupLocation";
+        $resourceGroupLocation = Read-Host 'resourceGroupLocation';
     }
-    New-AzureRmResourceGroup -Name "$resourceGroupName" -Location $resourceGroupLocation
+    New-AzureRmResourceGroup -Name $resourceGroupName -Location $resourceGroupLocation
 }
         
 $storageAcc=Get-AzureRmStorageAccount -ResourceGroupName $resourceGroupName -Name $StorageAccountName -ErrorAction SilentlyContinue
@@ -32,3 +32,4 @@ if (!$storageAcc.StorageAccountName)
 {  
 New-AzureRmStorageAccount -ResourceGroupName $resourceGroupName -AccountName $StorageAccountName -Location $resourceGroupLocation -Type 'Standard_LRS'
 }
+
