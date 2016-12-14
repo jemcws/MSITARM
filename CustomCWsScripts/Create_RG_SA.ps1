@@ -18,7 +18,7 @@ try{
         )
 
         Write-Host "Registering resource provider '$ResourceProviderNamespace'";
-        Register-AzureRmResourceProvider -ProviderNamespace $ResourceProviderNamespace -Force;
+        Register-AzureRmResourceProvider -ProviderNamespace $ResourceProviderNamespace;
     }
        $ErrorActionPreference = "Stop"
    
@@ -28,15 +28,15 @@ try{
     try {
     #Check if the user is already logged in for this session
     $AzureRmContext = Get-AzureRmContext | out-null
-    Write-verbose “Connected to Azure”
+    Write-verbose "Connected to Azure"
     } catch {
     
     $user= $SPName
-    $pass = ConvertTo-SecureString $SPPwd -AsPlainText –Force
-    $cred = New-Object -TypeName pscredential –ArgumentList $user, $pass
-    Login-AzureRmAccount -Credential $cred -ServicePrincipal –TenantId 72f988bf-86f1-41af-91ab-2d7cd011db47
+    $pass = ConvertTo-SecureString $SPPwd -AsPlainText â€“Force
+    $cred = New-Object -TypeName pscredential â€“ArgumentList $user, $pass
+    Login-AzureRmAccount -Credential $cred -ServicePrincipal â€“TenantId 72f988bf-86f1-41af-91ab-2d7cd011db47
     
-    Write-verbose “logged into Azure.”
+    Write-verbose "logged into Azure."
     $error.Clear()
     }
     
