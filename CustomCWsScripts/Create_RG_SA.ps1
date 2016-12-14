@@ -8,9 +8,9 @@ param(
  [String] $SPPwd=""
 )
 $user= $SPName
-$pass = ConvertTo-SecureString $SPPwd -AsPlainText –Force
-$cred = New-Object -TypeName pscredential –ArgumentList $user, $pass
-Login-AzureRmAccount -Credential $cred -ServicePrincipal –TenantId 72f988bf-86f1-41af-91ab-2d7cd011db47
+$pass = ConvertTo-SecureString $SPPwd -AsPlainText -Force
+$cred = New-Object -TypeName pscredential -ArgumentList $user, $pass
+Login-AzureRmAccount -Credential $cred -ServicePrincipal -TenantId 72f988bf-86f1-41af-91ab-2d7cd011db47
     
 # select subscription
 Select-AzureRmSubscription -SubscriptionID $subscriptionId;
@@ -32,4 +32,3 @@ if (!$storageAcc.StorageAccountName)
 {  
 New-AzureRmStorageAccount -ResourceGroupName $resourceGroupName -AccountName $StorageAccountName -Location $resourceGroupLocation -Type 'Standard_LRS'
 }
-
