@@ -43,5 +43,5 @@ New-AzureRmStorageAccount -ResourceGroupName $resourceGroupName -AccountName $St
 }
 else
 {
- Write-Host "Taking already existing Storage Account: '$StorageAccountName' from  Resource Group: '$resourceGroupName'"
+ Write-Host "Taking already existing Storage Account: "$StorageAccountName" from  Resource Group: "$resourceGroupName""
 }
