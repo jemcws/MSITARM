@@ -41,7 +41,3 @@ if (!$storageAcc.StorageAccountName)
 Write-Host "Creating Storage Account... $StorageAccountName"
 New-AzureRmStorageAccount -ResourceGroupName $resourceGroupName -AccountName $StorageAccountName -Location $resourceGroupLocation -Type 'Standard_LRS'
 }
-else
-{
- Write-Host "Taking already existing Storage Account: "$StorageAccountName" from  Resource Group: "$resourceGroupName""
-}
